@@ -3,4 +3,4 @@ App que busca arreglar alguno de los problemas en el transporte público de LATA
 
 
 ### Contribuidores
-Kevin Aron Tapia Cruz
+Kevin Aron Tapia Cruz - @kev-aron-28
