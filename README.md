@@ -3,3 +3,5 @@ App que busca arreglar alguno de los problemas en el transporte público de LATA
 
 
 ### Contribuidores
+
+- Darwin Narro
