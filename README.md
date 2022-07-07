@@ -3,6 +3,7 @@ App que busca arreglar alguno de los problemas en el transporte público de LATA
 
 
 ### Contribuidores
+- @MisaelCalvillo - Misael Calvillo Mancilla (misa@homely.mx) 🚀
 - @andydev8 - Andres Arguello (danilohiuts6@gmail.com)
 - @tevangj - Esteban Guerra 
 - @at0le6 - Angel Gamalie Gonzalez Gordillo (angel.gamaliel@hotmail.com)
