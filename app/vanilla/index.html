@@ -13,10 +13,29 @@
   </style>
 </head>
 <body>
-  <h1 class="title">Bienvidos a mi app 🚀</h1>
+  <h1 id="title" class="title">Bienvidos a mi app 🚀</h1>
+
+  <form>
+    <input id="email-input"  type="email" placeholder="Ingresa tu email" />
+    <input id="password-input" type="password" placeholder="Ingresa tu password" />
+    <button id="login-button" type="button" onclick="login()">Ingresar</button>
+  </form>
+
+  <div>
+    <h3>Usuario: <span id="logged-user-email">No hay sesión</span></h3>
+  </div>
 
   <script>
     console.log('Hola desde el script ✅')
+    const emailInput = document.getElementById('email-input')
+    const passwordInput = document.getElementById('password-input')
+    const userEmailLabel = document.getElementById('logged-user-email')
+
+    function login() {
+      console.log(emailInput.value)
+      console.log(passwordInput.value)
+      userEmailLabel.innerHTML = emailInput.value
+    }
   </script>
 </body>
 </html>
