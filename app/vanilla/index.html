@@ -32,9 +32,43 @@
     const userEmailLabel = document.getElementById('logged-user-email')
 
     function login() {
-      console.log(emailInput.value)
-      console.log(passwordInput.value)
-      userEmailLabel.innerHTML = emailInput.value
+      const email = emailInput.value
+      const password = passwordInput.value
+
+      if (!email) {
+        console.log('No hay email!')
+        return;
+      }
+      if (!password) {
+        console.log('No ingresaste el password!')
+        return 
+      } 
+
+      // Ya tenemos email y password
+
+      // Hacer petición al servidor
+      fetch('http://localhost:8000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      })
+      .then((res) => {
+        if (res.status >= 400) {
+          console.error('Respuesta con código de error 🚫')
+          res.json().then((jsonRes) => console.log(jsonRes))
+          return;
+        }
+        console.log('Respuesta recibida! ✅')
+        res.json().then((user) => {
+          console.log(user)
+          userEmailLabel.innerHTML = user.token
+        }) 
+      })
     }
   </script>
 </body>
