@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+
 import api from '../services/api'
 
-function LoginForm(props) {
+
+function LoginForm({ onLogin }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
   const [error, setError] = useState(null)
+
+  let navigate = useNavigate();
 
   function onEmailChangeHandler(e) {
     setEmail(e.target.value)
@@ -42,10 +46,9 @@ function LoginForm(props) {
         // mandamos a algún emisor de alertas
       }
     }
-    setUser(user)
+    onLogin(user.token)
+    navigate('/pefil');
   }
-
-  console.log({ user })
 
   return (
     <form>
