@@ -42,7 +42,6 @@ function LoginForm(props) {
         // mandamos a algún emisor de alertas
       }
     }
-
     setUser(user)
   }
 
