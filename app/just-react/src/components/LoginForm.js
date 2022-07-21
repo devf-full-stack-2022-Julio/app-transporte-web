@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import api from '../services/api'
 
 function LoginForm(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+  const [error, setError] = useState(null)
 
   function onEmailChangeHandler(e) {
     setEmail(e.target.value)
@@ -17,6 +20,33 @@ function LoginForm(props) {
       onLoginButtonClickHandler()
     }
   }
+
+  async function onLoginButtonClickHandler() {
+    if (!email) {
+      setError('Ingresa tu email')
+      return
+    }
+    if (!password) {
+      setError('Ingresa tu password')
+      return 
+    } 
+
+    let user = null;
+    try {
+      user = await api.users.login({ password, email })
+    } catch(error) {
+      if (error.message) {
+        setError(error.message)
+      } else {
+        console.error(error)
+        // mandamos a algún emisor de alertas
+      }
+    }
+
+    setUser(user)
+  }
+
+  console.log({ user })
 
   return (
     <form>
@@ -37,75 +67,9 @@ function LoginForm(props) {
       />
       <button type="button" onClick={onLoginButtonClickHandler}>Ingresar</button>
       <p className="error-message">{error}</p>
-      <button type="button" onClick={() => changeRoute('login')}>Registrate</button>
+      {/* <button type="button" onClick={() => changeRoute('login')}>Registrate</button> */}
   </form>
   )
 } 
 
 export default LoginForm
-
-
-import { useState, useEffect } from 'react';
-import './App.css';
-
-
-function App() {
-  const [user, setUser] = useState(null)
- 
-  const [error, setError] = useState(null)
-
-
-
-
-  function onLoginButtonClickHandler() {
-    if (!email) {
-      setError('Ingresa tu email')
-      return
-    }
-    if (!password) {
-      setError('Ingresa tu password')
-      return 
-    } 
-
-    fetch('http://localhost:8000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
-      })
-      .then((res) => {
-        if (res.status >= 400) {
-          console.error('Respuesta con código de error 🚫')
-          res.json().then((error) => {
-            setError(error.message)
-            setUser(null)
-          })
-          return;
-        }
-        console.log('Respuesta recibida! ✅')
-        res.json().then((user) => {
-          setUser(user)
-          setError(null)
-        }) 
-      })
-  }
-
-
-
-  function changeRoute(flag) {
-    if (flag === 'login') {
-      setOnLogin(false)
-      window.history.pushState({}, "", "/register")
-    }
-    if (flag === 'register') {
-      setOnLogin(true)
-      window.history.pushState({}, "", "/login")
-    }
-  }
-  );
-}
-
