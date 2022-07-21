@@ -6,8 +6,8 @@ import api from '../services/api'
 
 function LoginForm({ onLogin }) {
   const location = useLocation();
-  const [email, setEmail] = useState(location.state.email || '')
-  const [password, setPassword] = useState(location.state.password || '')
+  const [email, setEmail] = useState(location?.state?.email || '')
+  const [password, setPassword] = useState(location?.state?.password || '')
   const [error, setError] = useState(null)
 
   const navigate = useNavigate();
