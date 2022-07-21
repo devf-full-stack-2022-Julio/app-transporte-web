@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
 
 import api from '../services/api'
 
 
 function LoginForm({ onLogin }) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const location = useLocation();
+  const [email, setEmail] = useState(location.state.email || '')
+  const [password, setPassword] = useState(location.state.password || '')
   const [error, setError] = useState(null)
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   function onEmailChangeHandler(e) {
     setEmail(e.target.value)

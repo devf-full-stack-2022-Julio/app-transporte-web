@@ -1,11 +1,11 @@
 import React from 'react'
 import RegisterForm from '../components/RegisterForm'
 
-function RegisterPage(props) {
+function RegisterPage({ onRegister }) {
   return (
     <div>
       <h1>Register</h1>
-      <RegisterForm />
+      <RegisterForm onRegister={onRegister}/>
     </div>
   )
 }

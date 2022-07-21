@@ -16,8 +16,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Landing />} />
-      {/* <Route path='/registro' element={<Register onRegister={setUser} />} /> */}
+      <Route path='/' element={<Landing token={token} />} />
+      <Route path='/registro' element={<Register onRegister={() => console.log('nos registramos')} />} />
       <Route path='/inicio' element={<Login onLogin={setToken} />} />
       <Route path='/pefil' element={<Profile token={token} />} />
     </Routes>

@@ -1,15 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function useAuthenticate() {
-  const [token, setTokenState] = useState(null)
-  
-  useEffect(() => {
-    console.count('Esto solo se ejecuta una vez')
-    const localToken = localStorage.getItem('api-token')
-    if (localToken) {
-      setTokenState(localToken)
-    }
-  }, [])
+  const [token, setTokenState] = useState(localStorage.getItem('api-token'))
 
   const setToken = (_token) => {
     localStorage.setItem('api-token', _token);

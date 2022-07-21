@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import api from '../services/api'
+import { useNavigate } from 'react-router-dom'; 
 
-function RegisterForm(props) {
+function RegisterForm({ onRegister }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [user, setUser] = useState(null)
   const [error, setError] = useState(null)
+
+  const navigate = useNavigate();
 
   function onEmailChangeHandler(e) {
     setEmail(e.target.value)
@@ -48,8 +50,10 @@ function RegisterForm(props) {
         console.error(error)
         // mandamos a algún emisor de alertas
       }
+      return;
     }
-    setUser(user)
+    onRegister(user)
+    navigate('/inicio', { state: { email, password }})
   }
   
   function onEnterHandler(key) {
@@ -57,8 +61,6 @@ function RegisterForm(props) {
       onLoginButtonClickHandler()
     }
   }
-
-  console.log({ user })
 
   return (
     <form>
