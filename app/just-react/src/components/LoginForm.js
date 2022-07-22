@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import api from '../services/api'
 
 const Button = styled.button`
-  background-color: ${({ active }) => active ? 'green' : 'red'};
+  /* background-color: ${({ active }) => active ? 'green' : 'red'}; */
 `;
 
 function LoginForm({ onLogin }) {
@@ -60,7 +60,7 @@ function LoginForm({ onLogin }) {
   return (
     <form>
       <Button
-        className="button-purple"
+        className="btn btn-primary"
         type="button" 
         onClick={() => setTest(!test)} 
         active={test}
