@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
 import api from '../services/api'
 import { useNavigate } from 'react-router-dom'; 
+import styles from './RegisterForm.module.css';
+
+import styled from 'styled-components';
+
+const H2 = styled.h2`
+  color: purple;
+`;
 
 function RegisterForm({ onRegister }) {
   const [email, setEmail] = useState('')
@@ -64,7 +71,7 @@ function RegisterForm({ onRegister }) {
 
   return (
     <form>
-      <h2>Formulario de Registro</h2>
+      <H2>Formulario de Registro</H2>
       <input 
         type="email" 
         placeholder="Registrate con tu email" 

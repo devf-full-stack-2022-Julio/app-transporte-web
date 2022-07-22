@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; 
-import './LoginForm.css';
+import styled from 'styled-components';
 
 import api from '../services/api'
 
+const Button = styled.button`
+  background-color: ${({ active }) => active ? 'green' : 'red'};
+`;
 
 function LoginForm({ onLogin }) {
   const location = useLocation();
@@ -56,11 +59,12 @@ function LoginForm({ onLogin }) {
 
   return (
     <form>
-      <button 
+      <Button
+        className="button-purple"
         type="button" 
         onClick={() => setTest(!test)} 
-        className={test ? 'button-red' : 'button-green'}
-      >Presioname</button>  
+        active={test}
+      >Presioname</Button>  
 
       <h2 className="error-message">Formulario de Inicio de Sesión</h2>
       <input 
