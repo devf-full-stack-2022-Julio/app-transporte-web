@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'; 
+import './LoginForm.css';
 
 import api from '../services/api'
 
@@ -9,6 +10,8 @@ function LoginForm({ onLogin }) {
   const [email, setEmail] = useState(location?.state?.email || '')
   const [password, setPassword] = useState(location?.state?.password || '')
   const [error, setError] = useState(null)
+
+  const [test, setTest] = useState(false)
 
   const navigate = useNavigate();
 
@@ -53,7 +56,13 @@ function LoginForm({ onLogin }) {
 
   return (
     <form>
-      <h2>Formulario de Inicio de Sesión</h2>
+      <button 
+        type="button" 
+        onClick={() => setTest(!test)} 
+        className={test ? 'button-red' : 'button-green'}
+      >Presioname</button>  
+
+      <h2 className="error-message">Formulario de Inicio de Sesión</h2>
       <input 
         type="email" 
         placeholder="Ingresa tu email" 

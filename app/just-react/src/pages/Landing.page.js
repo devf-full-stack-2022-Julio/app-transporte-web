@@ -15,6 +15,7 @@ function LandingPage({ token }) {
   return (
     <div>
       <h1>Bienvenidos a mi app 🚀</h1>
+      <code>Hola mundo</code>
     </div>
   )
 }
