@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
 import api from '../services/api'
 import { useNavigate } from 'react-router-dom'; 
-import styles from './RegisterForm.module.css';
+
+import Input from './atoms/Input';
+import Button from './atoms/Button';
+import Alert from './atoms/Alert'
 
 import styled from 'styled-components';
+const RegisterFormStyled = styled.div`
+  &.register-form { 
+    max-width: 300px;
+    transform: translateY(50%);
+    background-color: white;
+  }
+`
 
-const H2 = styled.h2`
-  color: purple;
-`;
 
-function RegisterForm({ onRegister }) {
+function RegisterForm({ className, onRegister }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -29,7 +36,7 @@ function RegisterForm({ onRegister }) {
     setPasswordConfirm(e.target.value)
   }
 
-  async function onLoginButtonClickHandler() {
+  async function onRegisterButtonClickHandler() {
     if (!email) {
       setError('Ingresa tu email')
       return
@@ -65,38 +72,48 @@ function RegisterForm({ onRegister }) {
   
   function onEnterHandler(key) {
     if (key.code === "Enter") {
-      onLoginButtonClickHandler()
+      onRegisterButtonClickHandler()
     }
   }
 
   return (
-    <form>
-      <H2>Formulario de Registro</H2>
-      <input 
-        type="email" 
-        placeholder="Registrate con tu email" 
-        value={email} 
-        onChange={onEmailChangeHandler}
-        onKeyDown={onEnterHandler}
-      />
-      <input 
-        type="password" 
-        placeholder="Ingresa una contraseña" 
-        value={password}
-        onChange={onPasswordChangeHandler}
-        onKeyDown={onEnterHandler}
-      />
-      <input 
-        type="password" 
-        placeholder="Confirma tu contraseña" 
-        value={passwordConfirm}
-        onChange={onPasswordConfirmChangeHandler}
-        onKeyDown={onEnterHandler}
-      />
-      <button type="button" onClick={onLoginButtonClickHandler}>Ingresar</button>
-      <p className="error-message">{error}</p>
-      {/* <button type="button" onClick={() => changeRoute('register')}>Inicia Sesión</button> */}
-    </form>
+    <RegisterFormStyled
+      className={`${className} container-fluid shadow rounded py-2 register-form`}
+    >
+      <form className="d-grid gap-2">
+        <h2 className="fs-2">Registrate</h2>
+        <Input
+          className="mb-2" 
+          type="email" 
+          placeholder="Registrate con tu email" 
+          value={email} 
+          onChange={onEmailChangeHandler}
+          onKeyDown={onEnterHandler}
+        />
+        <Input
+          className="mb-2" 
+          type="password" 
+          placeholder="Ingresa una contraseña" 
+          value={password}
+          onChange={onPasswordChangeHandler}
+          onKeyDown={onEnterHandler}
+        />
+        <Input
+          className="mb-2"
+          type="password" 
+          placeholder="Confirma tu contraseña" 
+          value={passwordConfirm}
+          onChange={onPasswordConfirmChangeHandler}
+          onKeyDown={onEnterHandler}
+        />
+        <Button 
+          className="mb-3" 
+          type="button" 
+          onClick={onRegisterButtonClickHandler}
+        >Ingresar</Button>
+        {error && <Alert>{error}</Alert>}
+      </form>
+    </RegisterFormStyled>
   )
 }
 

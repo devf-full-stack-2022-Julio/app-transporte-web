@@ -1,12 +1,18 @@
-import React from 'react'
-import LoginForm from '../components/LoginForm'
+import React from 'react';
+import LoginForm from '../components/LoginForm';
+import styled from 'styled-components';
 
-function LoginPage({ onLogin }) {
+const LoginPageStyled = styled.section`
+  &.login-page {
+    background-color: #C2C1C2;
+    height: 100vh;
+  }
+`
+function LoginPage({ className, onLogin }) {
   return (
-    <div>
-      <h1>Login</h1>
+    <LoginPageStyled className={`${className} login-page`}>
       <LoginForm onLogin={onLogin} />
-    </div>
+    </LoginPageStyled>
   )
 }
 
