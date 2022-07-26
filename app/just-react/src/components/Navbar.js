@@ -13,7 +13,14 @@ const NavbarStyled = styled.nav`
   }
 `
 
-function Navbar({ className, userName, onClose }) { 
+function Navbar({ className, userName, onClose, onLogin }) { 
+  const handleClickButton = (e) => {
+    if (userName) {
+      onClose(e)
+    } else {
+      onLogin(e)
+    }
+  }
   return (
     <NavbarStyled className={`${className} navbar custom-navbar`}>
       <div className="container-fluid">
@@ -21,7 +28,9 @@ function Navbar({ className, userName, onClose }) {
           Bienvenido {userName}
         </span>
         <span>
-          <button onClick={onClose} type="button" className="btn btn-light">Cerrar sesión</button>
+          <button onClick={handleClickButton} type="button" className="btn btn-light">
+            {userName ? 'Cerrar sesión' : 'Iniciar sesión'}
+          </button>
         </span>
       </div>
     </NavbarStyled>

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
+import Layout from './pages/Layout';
 import Landing from './pages/Landing.page';
 import Register from './pages/Register.page';
 import Login from './pages/Login.page';
@@ -18,10 +19,20 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Landing token={token} />} />
+      <Route path='/' element={<Layout token={token} onClose={closeSession} />}>
+        <Route index element={<Landing />} />
+        <Route path='perfil' element={<Profile token={token} />} />
+      </Route>
       <Route path='/registro' element={<Register onRegister={() => console.log('nos registramos')} />} />
       <Route path='/inicio' element={<Login onLogin={setToken} />} />
-      <Route path='/perfil' element={<Profile token={token} onClose={closeSession} />} />
+      <Route
+      path="*"
+      element={
+        <main style={{ padding: "1rem" }}>
+          <p>No hay nada aquí 🫣</p>
+        </main>
+      }
+    />
     </Routes>
 
   )

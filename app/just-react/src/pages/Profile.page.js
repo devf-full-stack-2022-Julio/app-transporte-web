@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Navbar from '../components/Navbar';
-
-function ProfilePage({ token, onClose }) {
+function ProfilePage({ token }) {
   const navigate = useNavigate();
   useEffect(() => {
     if (!token) {
@@ -11,9 +9,11 @@ function ProfilePage({ token, onClose }) {
     } 
   }, [token])
 
+  if (!token) return null;
+
   return (
     <div>
-      <Navbar userName={token} onClose={onClose} />
+      <h1>Hola: {token}</h1>
     </div>
   )
 }

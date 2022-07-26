@@ -1,24 +1,11 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
-
-function LandingPage({ token }) {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (token) {
-      console.log('Hubo token en landing')
-      navigate('/perfil')
-      return;
-    } 
-    console.log('No hubo token en landing');
-  }, [])
-
+function LandingPage() {
   return (
-    <div>
-      <h1>Bienvenidos a mi app 🚀</h1>
-      <code>Hola mundo</code>
-    </div>
+    <section>
+      <h1>Esta va a ser la landing... 🚀</h1>
+    </section>
   )
 }
 
-export default LandingPage
+export default LandingPage;
