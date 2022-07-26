@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const RegisterPageStyled = styled.section`
   &.register-page {
-    background-color: #C2C1C2;
+    background-color: #4a4e69;
     height: 100vh;
   }
 `

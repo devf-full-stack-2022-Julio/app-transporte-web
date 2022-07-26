@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import api from '../services/api'
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom'; 
 
 import Input from './atoms/Input';
 import Button from './atoms/Button';
@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const RegisterFormStyled = styled.div`
   &.register-form { 
     max-width: 300px;
-    transform: translateY(50%);
+    transform: translateY(calc(50vh - 50%));
     background-color: white;
   }
 `
@@ -78,10 +78,10 @@ function RegisterForm({ className, onRegister }) {
 
   return (
     <RegisterFormStyled
-      className={`${className} container-fluid shadow rounded py-2 register-form`}
+      className={`${className} container-fluid shadow rounded py-4 px-3 register-form`}
     >
       <form className="d-grid gap-2">
-        <h2 className="fs-2">Registrate</h2>
+        <h2 className="fw-bold fs-2 text-center">Registrate</h2>
         <Input
           className="mb-2" 
           type="email" 
@@ -112,6 +112,7 @@ function RegisterForm({ className, onRegister }) {
           onClick={onRegisterButtonClickHandler}
         >Ingresar</Button>
         {error && <Alert>{error}</Alert>}
+         <Link className="text-center" to="/inicio">Ya tienes cuenta? Inicia sesión</Link>
       </form>
     </RegisterFormStyled>
   )

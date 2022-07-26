@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const LoginPageStyled = styled.section`
   &.login-page {
-    background-color: #C2C1C2;
+    background-color: #4a4e69;
     height: 100vh;
   }
 `

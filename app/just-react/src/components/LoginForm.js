@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; 
+import { useNavigate, useLocation, Link } from 'react-router-dom'; 
 import styled from 'styled-components';
 
 import Input from './atoms/Input';
@@ -10,8 +10,8 @@ import api from '../services/api';
 const LoginFormStyled = styled.div`
   &.login-form { 
     max-width: 300px;
-    transform: translateY(50%);
     background-color: white;
+    transform: translateY(calc(50vh - 50%));
   }
 `
 
@@ -64,10 +64,10 @@ function LoginForm({ className, onLogin }) {
 
   return (
     <LoginFormStyled 
-      className={`${className} container-fluid shadow rounded py-2 login-form`}
+      className={`${className} container-fluid shadow rounded py-4 px-3 login-form`}
     >
       <form className="d-grid gap-2">
-        <h2 className="fs-2">Inicia Sesión</h2>
+        <h2 className="fw-bold fs-2 text-center">Inicia Sesión</h2>
         <Input
           className="mb-1"
           type="email" 
@@ -86,6 +86,7 @@ function LoginForm({ className, onLogin }) {
         />
         <Button className="mb-3" type="button" onClick={onLoginButtonClickHandler}>Ingresar</Button>
         {error && <Alert>{error}</Alert>}
+        <Link className="text-center" to="/registro">No tines cuenta ? Registrate aquí</Link>
       </form>
     </LoginFormStyled>
   )
