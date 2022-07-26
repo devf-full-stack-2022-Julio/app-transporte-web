@@ -59,7 +59,7 @@ function LoginForm({ className, onLogin }) {
       }
     }
     onLogin(user.token)
-    navigate('/pefil');
+    navigate('/perfil');
   }
 
   return (

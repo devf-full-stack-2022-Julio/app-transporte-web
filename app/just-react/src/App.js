@@ -14,12 +14,14 @@ function App() {
   console.log('Estado del token');
   console.log(token);
 
+  const closeSession = () => setToken(null)
+
   return (
     <Routes>
       <Route path='/' element={<Landing token={token} />} />
       <Route path='/registro' element={<Register onRegister={() => console.log('nos registramos')} />} />
       <Route path='/inicio' element={<Login onLogin={setToken} />} />
-      <Route path='/pefil' element={<Profile token={token} />} />
+      <Route path='/perfil' element={<Profile token={token} onClose={closeSession} />} />
     </Routes>
 
   )

@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function ProfilePage({ token }) {
+import Navbar from '../components/Navbar';
 
-  if (!token) {
-    return (
-      <h1>Ups, no encontramos lo que buscabas...</h1>
-    )
-  };
+function ProfilePage({ token, onClose }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!token) {
+      navigate('/inicio')
+    } 
+  }, [token])
 
   return (
     <div>
-      <h1>Mi pefil</h1>
+      <Navbar userName={token} onClose={onClose} />
     </div>
   )
 }
