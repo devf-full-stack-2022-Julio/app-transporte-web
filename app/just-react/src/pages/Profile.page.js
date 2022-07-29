@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
-function ProfilePage({ token }) {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!token) {
-      navigate('/inicio')
-    } 
-  }, [token])
-
-  if (!token) return null;
-
+function ProfilePage() {
+  const { authState } = useContext(AuthContext)
+  console.log({ authState })
   return (
     <div>
-      <h1>Hola: {token}</h1>
+      <h1>Hola: {authState.userInfo.email}</h1>
     </div>
   )
 }

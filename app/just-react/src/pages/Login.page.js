@@ -8,10 +8,10 @@ const LoginPageStyled = styled.section`
     height: 100vh;
   }
 `
-function LoginPage({ className, onLogin }) {
+function LoginPage({ className }) {
   return (
     <LoginPageStyled className={`${className} login-page`}>
-      <LoginForm onLogin={onLogin} />
+      <LoginForm />
     </LoginPageStyled>
   )
 }

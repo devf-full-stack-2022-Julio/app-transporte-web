@@ -1,22 +1,21 @@
-import { useEffect } from 'react';
-import { useNavigate, Outlet} from 'react-router-dom';
+import { useContext } from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 import Navbar from '../components/Navbar';
+import { AuthContext } from '../context/AuthContext';
 
 function LandingPage({ token, onClose }) {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (token) {
-      navigate('/perfil')
-      return;
-    } 
-  }, [])
+  const { authState } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const onLogin = () => navigate('/inicio')
-  
+
   return (
     <div>
-      <Navbar userName={token} onClose={onClose} onLogin={onLogin} />
+      <Navbar 
+        userName={authState && authState.userInfo && authState.userInfo.email} 
+        onClose={onClose} 
+        onLogin={onLogin} />
       <Outlet />
     </div>
   )

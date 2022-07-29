@@ -8,32 +8,36 @@ import Login from './pages/Login.page';
 import Profile from './pages/Profile.page';
 import useAuthenticate from './hooks/useAuthenticate';
 
+import { AuthProvider } from './context/AuthContext';
+
 function App() {
-  const [token, setToken] = useAuthenticate();
+  const [token, ] = useAuthenticate();
 
   console.log('App.js')
   console.log('Estado del token');
   console.log(token);
 
-  const closeSession = () => setToken(null)
+ 
 
   return (
-    <Routes>
-      <Route path='/' element={<Layout token={token} onClose={closeSession} />}>
-        <Route index element={<Landing />} />
-        <Route path='perfil' element={<Profile token={token} />} />
-      </Route>
-      <Route path='/registro' element={<Register onRegister={() => console.log('nos registramos')} />} />
-      <Route path='/inicio' element={<Login onLogin={setToken} />} />
-      <Route
-      path="*"
-      element={
-        <main style={{ padding: "1rem" }}>
-          <p>No hay nada aquí 🫣</p>
-        </main>
-      }
-    />
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Landing />} />
+          <Route path='perfil' element={<Profile />} />
+        </Route>
+        <Route path='/registro' element={<Register onRegister={() => console.log('nos registramos')} />} />
+        <Route path='/inicio' element={<Login />} />
+        <Route
+        path="*"
+        element={
+          <main style={{ padding: "1rem" }}>
+            <p>No hay nada aquí 🫣</p>
+          </main>
+        }
+      />
+      </Routes>
+    </AuthProvider>
 
   )
 }

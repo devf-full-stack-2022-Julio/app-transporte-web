@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom'; 
 import styled from 'styled-components';
 
@@ -6,6 +6,8 @@ import Input from './atoms/Input';
 import Button from './atoms/Button';
 import Alert from './atoms/Alert'
 import api from '../services/api';
+
+import { AuthContext } from '../context/AuthContext';
 
 const LoginFormStyled = styled.div`
   &.login-form { 
@@ -15,7 +17,8 @@ const LoginFormStyled = styled.div`
   }
 `
 
-function LoginForm({ className, onLogin }) {
+function LoginForm({ className }) {
+  const authContext = useContext(AuthContext);
   const location = useLocation();
   const [email, setEmail] = useState(location?.state?.email || '')
   const [password, setPassword] = useState(location?.state?.password || '')
@@ -47,9 +50,9 @@ function LoginForm({ className, onLogin }) {
       return 
     } 
 
-    let user = null;
+    let response = null;
     try {
-      user = await api.users.login({ password, email })
+      response = await api.users.login({ password, email })
     } catch(error) {
       if (error.message) {
         setError(error.message)
@@ -58,7 +61,11 @@ function LoginForm({ className, onLogin }) {
         // mandamos a algún emisor de alertas
       }
     }
-    onLogin(user.token)
+    authContext.setAuthInfo({ 
+      token: response.token, 
+      userInfo: response.user, 
+      expiresAt: response.expires 
+    });
     navigate('/perfil');
   }
 

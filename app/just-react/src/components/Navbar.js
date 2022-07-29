@@ -25,7 +25,7 @@ function Navbar({ className, userName, onClose, onLogin }) {
     <NavbarStyled className={`${className} navbar custom-navbar`}>
       <div className="container-fluid">
         <span className="navbar-text custom-navbar-text">
-          Bienvenido {userName}
+          {userName ? `Bienvenido ${userName}`: `Inicia sesión` }
         </span>
         <span>
           <button onClick={handleClickButton} type="button" className="btn btn-light">
